@@ -1,0 +1,48 @@
+* {
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    display: block;
+    color: black;
+    font-size: medium;
+    margin: 10px;
+    width: 100%;
+}
+
+#sig-canvas {
+    border: 2px dotted lightblue;
+    border-radius: 15px;
+    cursor: crosshair;
+}
+
+#container {
+    margin: 15px;
+}
+
+h1 {
+    position: absolute;
+    text-align: center;
+}
+
+form {
+    position: absolute;
+    width: 100%;
+    margin-top: 30px;
+    left: 40%;
+    top: 30%;
+}
+
+input {
+    border: 2px dotted lightblue;
+}
