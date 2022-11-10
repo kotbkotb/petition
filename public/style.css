@@ -46,3 +46,11 @@ form {
 input {
     border: 2px dotted lightblue;
 }
+
+p {
+    position: relative;
+    text-align: center;
+    right: 400%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

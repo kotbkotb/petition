@@ -5,9 +5,10 @@ const password = "omaromar";
 const db = spicedPg(`postgres:${user}:${password}@localhost:5432/${database}`);
 
 function getSignatures() {
-    return db
-        .query("SELECT * FROM signatures")
-        .then((result) => console.log(result.rows));
+    return db.query("SELECT * FROM signatures").then((result) => {
+        return result.rows;
+        //console.log("db result", result));
+    });
 }
 
 function getSignaturesByName(first) {
@@ -24,7 +25,7 @@ function createSigns({ first, last, signature }) {
     RETURNING *`,
             [first, last, signature]
         )
-        .then((result) => result.rows[0]); //
+        .then((result) => result.rows[0]);
 }
 
 module.exports = {

@@ -34,6 +34,14 @@ app.post("/", (req, res) => {
     });
 });
 
+app.get("/signers", (req, res) => {
+    getSignatures().then((result) => {
+        console.log("we have got it", result);
+        // let listOfNames = [];
+        res.render("signers", { result });
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
