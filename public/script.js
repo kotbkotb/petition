@@ -12,7 +12,7 @@
         );
     })();
 
-    var canvas = document.getElementById("sig-canvas");
+    var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#222222";
     ctx.lineWidth = 4;
@@ -37,6 +37,7 @@
         "mouseup",
         function (e) {
             drawing = false;
+            saveCanvasUrl();
         },
         false
     );
@@ -49,7 +50,6 @@
         false
     );
 
-    // Add touch event support for mobile
     canvas.addEventListener("touchstart", function (e) {}, false);
 
     canvas.addEventListener(
@@ -112,8 +112,6 @@
             lastPos = mousePos;
         }
     }
-
-    // Prevent scrolling when touching the canvas
     document.body.addEventListener(
         "touchstart",
         function (e) {
@@ -147,31 +145,12 @@
         renderCanvas();
     })();
 
-    function clearCanvas() {
-        canvas.width = canvas.width;
+    function saveCanvasUrl() {
+        document.querySelector('[type="hidden"]').value = canvas.toDataURL();
     }
 
     // Set up the UI
-    var sigText = document.getElementById("sig-dataUrl");
-    var sigImage = document.getElementById("sig-image");
-    var clearBtn = document.getElementById("sig-clearBtn");
-    var submitBtn = document.getElementById("sig-submitBtn");
-    clearBtn.addEventListener(
-        "click",
-        function (e) {
-            clearCanvas();
-            sigText.innerHTML = "Data URL for your signature will go here!";
-            sigImage.setAttribute("src", "");
-        },
-        false
-    );
-    submitBtn.addEventListener(
-        "click",
-        function (e) {
-            var dataUrl = canvas.toDataURL();
-            sigText.innerHTML = dataUrl;
-            sigImage.setAttribute("src", dataUrl);
-        },
-        false
-    );
+    var sigText = document.getElementById("dataUrl");
+    var sigImage = document.getElementById("image");
+    var submitBtn = document.getElementById("submit");
 })();

@@ -20,14 +20,10 @@ body {
     width: 100%;
 }
 
-#sig-canvas {
+#canvas {
     border: 2px dotted lightblue;
     border-radius: 15px;
     cursor: crosshair;
-}
-
-#container {
-    margin: 15px;
 }
 
 h1 {

@@ -14,7 +14,17 @@ app.use(
     })
 );
 
-const { createSigns, registerUser, loginEmail, auth } = require("./db");
+const {
+    createSigns,
+    registerUser,
+    loginEmail,
+    auth,
+    createProfile,
+    getSigner,
+    getCity,
+    getSignatures,
+    getAllInfo,
+} = require("./db");
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -48,9 +58,9 @@ app.post("/login", (req, res) => {
         auth(email, password).then((succes) => {
             if (succes === true) {
                 req.session.userid = result.rows[0].id;
-                res.redirect("petition");
+                res.redirect("/petition");
             } else {
-                res.redirect("login");
+                res.redirect("/login");
             }
         });
     });
@@ -71,12 +81,55 @@ app.post("/register", (req, res) => {
     registerUser(first, last, email, password).then((result) => {
         console.log("userid", result[0].id);
         req.session.userid = result[0].id;
-        res.redirect("/petition");
+        res.redirect("/profile");
     });
+});
+
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/login");
 });
 
 app.get("/petition", (req, res) => {
     res.render("petition");
+});
+
+app.post("/petition", (req, res) => {
+    const body = req.body;
+    const { signature } = req.body;
+    let user_id = req.session.userid;
+    console.log(user_id);
+    console.log(signature);
+    getSignatures({ signature, userid: user_id }).then((result) => {
+        console.log("userid", result.id);
+
+        return res.redirect("/thanks");
+    });
+});
+
+app.get("/profile", (req, res) => {
+    res.render("profile");
+});
+
+app.post("/profile", (req, res) => {
+    const body = req.body;
+    let user_id = req.session.userid;
+    const { age, city, url } = body;
+    createProfile(age, city, url, user_id).then((data) => {
+        console.log("the city data", data);
+
+        res.redirect("/petition");
+    });
+});
+
+app.get("/thanks", (req, res) => {
+    res.render("thanks");
+});
+
+app.get("/signers", (req, res) => {
+    getSigner().then((result) => {
+        res.render("signers", { result });
+    });
 });
 
 app.listen(PORT, () => {
