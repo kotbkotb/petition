@@ -1,9 +1,24 @@
-<div class="thankyou-message-container">
-    <h2>
-        Thank you for taking a first step towards real change by signing the
-        petition</h2>
-</div>
-<div class="link-to-signers-page">
-    <a href="http://localhost:5000/signers"><h2>Wanna see who already took part
-            of change and signed the petition</h2></a>
+<div class="thanks-container">
+    <div class="thankyou-message-container">
+        <h2>
+            Thank you for taking a first step towards real change by signing the
+            petition</h2>
+    </div>
+    <div class="link-to-signers-page">
+        <a href="http://localhost:5000/signers"><h2>Wanna see who already took
+                part of change and signed the petition</h2>
+            <br /></a>
+    </div>
+    <div class="link-to-edit-page">
+        <a id="edit" href="http://localhost:5000/edit"> Edit Profile</a>
+    </div>
+    <div class="signature" id="img-canvas">
+        <img src="{{saveCanvasUrl}}" alt="signature" />
+    </div>
+    <div class="logout-button">
+        <a id="logout" href="/logout"> logout </a>
+    </div>
+    <div class="deleteSignature">
+        <a id="delete" href="/deleteSignature">Delete your Signature</a>
+    </div>
 </div>

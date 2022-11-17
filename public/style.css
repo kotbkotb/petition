@@ -6,14 +6,7 @@
     font-family: "Raleway", sans-serif;
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-
 .input {
-    display: block;
     color: black;
     font-size: medium;
     margin: 10px;
@@ -26,27 +19,163 @@ body {
     cursor: crosshair;
 }
 
-h1 {
-    position: absolute;
-    text-align: center;
-}
-
-form {
-    position: absolute;
-    width: 100%;
-    margin-top: 30px;
-    left: 40%;
-    top: 30%;
-}
-
 input {
     border: 2px dotted lightblue;
 }
 
-p {
-    position: relative;
+.signupbtn {
+    border: 2px dotted lightblue;
+}
+
+#submit {
+    border: 2px dotted lightblue;
+}
+
+.continue {
+    border: 2px dotted lightblue;
+    font-size: medium;
+}
+
+.welcome-change {
+    height: 40px;
+    width: 40px;
+    margin-right: 38px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-paragraph {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.login-paragraph h4 {
     text-align: center;
-    right: 400%;
-    margin-top: 10px;
+    padding: 40px 228px;
+    margin-top: 30px;
+}
+.login-paragraph h3 {
+    text-align: center;
+    padding: 40px 228px;
+    margin-top: 30px;
+}
+.login-form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 228px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+}
+.login-form form {
+    padding: 20px;
+    margin: 10px;
+}
+
+.register-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-input input {
     margin-bottom: 10px;
+}
+
+.registerForm {
+    padding: 10px;
+    margin-bottom: 40px;
+    width: 50%;
+    font-size: 15px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 228px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.profile-input {
+    margin-bottom: 30px;
+}
+
+.thanks-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 228px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    font-size: medium;
+}
+
+.thankyou-message-container {
+    margin-bottom: 50px;
+}
+
+.link-to-edit-page {
+    margin-bottom: 50px;
+}
+
+.logout-button {
+    margin: 50px;
+    color: black;
+    font-size: medium;
+}
+
+#img-canvas {
+    margin-bottom: 30px;
+}
+
+.signers-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 228px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    font-size: medium;
+}
+
+.signers-name-city {
+    text-align: center;
+    font-size: 25px;
+    width: 100%;
+}
+
+.go-back-button {
+    margin-top: 20px;
 }

@@ -1,11 +1,20 @@
-<div>
-
+<div class="signers-container">
+<div class="signers-name-city">
     {{#result}}
         <p>
+        {{#if url}}
+                        <a href="{{url}}"  target="_blank">
+                                            {{/if}}
             {{first_name}}
             {{last_name}}
             {{age}}
 
+            <a href="/signers/{{city}}">{{city}}</a>
+
         </p>
     {{/result}}
+    </div>
+    <div class="go-back-button">
+    <a class="back" href="/thanks">Go Back previous page</a>
+    </div>
 </div>

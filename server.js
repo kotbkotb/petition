@@ -24,6 +24,10 @@ const {
     getCity,
     getSignatures,
     getAllInfo,
+    updateUserinfoWithPW,
+    updateUserinfoWithoutPW,
+    updateUserProfileInfo,
+    deleteSignature,
 } = require("./db");
 
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +36,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 app.use(express.urlencoded());
 
+// main route dedicated for cookies
 app.get("/", (req, res) => {
     if (req.session.userid) {
         res.redirect("/petition");
@@ -40,6 +45,7 @@ app.get("/", (req, res) => {
     }
 });
 
+// Login page
 app.get("/login", (req, res) => {
     if (req.session.userid) {
         res.redirect("/petition");
@@ -66,6 +72,7 @@ app.post("/login", (req, res) => {
     });
 });
 
+// register page
 app.get("/register", (req, res) => {
     if (req.session.userid) {
         res.redirect("/petition");
@@ -85,6 +92,7 @@ app.post("/register", (req, res) => {
     });
 });
 
+// I want ro add a log out function
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/login");
@@ -107,6 +115,7 @@ app.post("/petition", (req, res) => {
     });
 });
 
+// profile page
 app.get("/profile", (req, res) => {
     res.render("profile");
 });
@@ -114,6 +123,7 @@ app.get("/profile", (req, res) => {
 app.post("/profile", (req, res) => {
     const body = req.body;
     let user_id = req.session.userid;
+    console.log("what the body contains", req.body, user_id);
     const { age, city, url } = body;
     createProfile(age, city, url, user_id).then((data) => {
         console.log("the city data", data);
@@ -128,7 +138,47 @@ app.get("/thanks", (req, res) => {
 
 app.get("/signers", (req, res) => {
     getSigner().then((result) => {
+        console.log("signer'S result", result);
         res.render("signers", { result });
+    });
+});
+
+app.get("/signers/:City", (req, res) => {
+    let city = req.params.City;
+    console.log("deh el params ya prince", req.params);
+    if (!req.session.userid) {
+        res.redirect("/login");
+    } else {
+        getCity(city).then((result) => {
+            return res.render("City", { result });
+        });
+    }
+});
+
+app.get("/edit", (req, res) => {
+    if (!req.session.userid) {
+        res.redirect("/login");
+    } else {
+        let user_id = req.session.userid;
+        getAllInfo(user_id).then((result) => {
+            console.log("getallinfo", result);
+            res.render("edit", {
+                first_name: result[0].first_name,
+                last_name: result[0].last_name,
+                email: result[0].email,
+                age: result[0].age,
+                city: result[0].city,
+                url: result[0].url,
+            });
+        });
+    }
+});
+
+app.get("/deleteSignature", (req, res) => {
+    let user_id = req.session.userid;
+    deleteSignature(user_id).then(() => {
+        req.session.signatureId = null;
+        res.redirect("/petition");
     });
 });
 
