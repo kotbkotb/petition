@@ -1,6 +1,6 @@
 const spicedPg = require("spiced-pg");
 require("dotenv").config();
-const { USER, PASSWORD, DATABASE } = process.env;
+const { DATABASE_URL } = process.env;
 
 const db = spicedPg(`${DATABASE_URL}`);
 const bcrypt = require("bcryptjs");
